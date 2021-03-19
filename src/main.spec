@@ -3,14 +3,14 @@
 block_cipher = None
 from kivymd import hooks_path as kivymd_hooks_path
 
-a = Analysis(['Desktop/main.py'],
-             pathex=['/media/darpan/Motu/Softwares/Android/LinuxBuild'],
+a = Analysis(['main.py'],
+             pathex=['.'],
              binaries=[],
-             datas=[('Desktop/matrixcalculator.kv','.'),('Desktop/assets','assets')],
+             datas=[('matrixcalculator.kv','.'),('assets/','assets')],
              hiddenimports=[],
              hookspath=[kivymd_hooks_path],
              runtime_hooks=[],
-             excludes=['numpy', 'docutils', 'pygments', 'PIL'],
+             excludes=[],
              win_no_prefer_redirects=False,
              win_private_assemblies=False,
              cipher=block_cipher,
