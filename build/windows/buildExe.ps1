@@ -96,12 +96,12 @@ exe = EXE(pyz,
           a.scripts,
           [],
           exclude_binaries=True,
-          name='helloWorld',
+          name='Matrix Calculator',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
-          console=True )
+          console=False)
 coll = COLLECT(exe, Tree('..\\src\\'),
                a.binaries,
                a.zipfiles,
@@ -110,7 +110,7 @@ coll = COLLECT(exe, Tree('..\\src\\'),
                strip=False,
                upx=True,
                upx_exclude=[],
-               name='helloWorld')
+               name='Matrix Calculator')
 " | tee helloWorld.spec
 
 # PyInstaller in windows chokes on null bytes added to .spec files; remove them
