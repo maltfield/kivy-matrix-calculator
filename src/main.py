@@ -213,4 +213,8 @@ class Validator:
 
 # /// Driver needed to self start the function ---- VROOM! VROOM!
 if __name__ == "__main__":
+    import os, sys
+    from kivy.resources import resource_add_path, resource_find
+    if hasattr(sys, '_MEIPASS'):
+        resource_add_path(os.path.join(sys._MEIPASS))
     MatrixCalculator().run()
