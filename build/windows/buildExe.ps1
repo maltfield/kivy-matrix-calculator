@@ -94,23 +94,17 @@ pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
 exe = EXE(pyz,
           a.scripts,
+          a.binaries,
+          a.datas,
+          a.zipfiles,
+        *[Tree(p) for p in (glew.dep_bins + angle.dep_bins + sdl2.dep_bins)],
           [],
-          exclude_binaries=True,
           name='Matrix Calculator',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
           console=False)
-coll = COLLECT(exe, Tree('..\\src\\'),
-               a.binaries,
-               a.zipfiles,
-               a.datas,
-               *[Tree(p) for p in (glew.dep_bins + angle.dep_bins + sdl2.dep_bins)],
-               strip=False,
-               upx=True,
-               upx_exclude=[],
-               name='Matrix Calculator')
 " | tee helloWorld.spec
 
 # PyInstaller in windows chokes on null bytes added to .spec files; remove them
