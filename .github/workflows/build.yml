@@ -97,4 +97,3 @@ jobs:
         asset_path: helloWorld-windows-x86_64.${{ github.run_id }}.zip
         asset_name: helloWorld-windows-x86_64.${{ github.run_id }}.zip
         asset_content_type: application/zip
-
