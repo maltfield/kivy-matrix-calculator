@@ -20,9 +20,9 @@ set -x
 # SETTINGS #
 ############
 
-PYTHON_PATH="`find /usr/local/Cellar/python@3.7 -type f -name python3.7 | head -n1`"
-PIP_PATH="`find /usr/local/Cellar/python@3.7 -type f -name pip3.7 | head -n1`"
-APP_NAME='kivyMatrixCalculator'
+PYTHON_PATH="`find /usr/local/Cellar/python* -type f -wholename *bin/python3* | sort -n | uniq | head -n1`"
+PIP_PATH="`find /usr/local/Cellar/python* -type f -wholename *bin/pip3* | sort -n | uniq | head -n1`"
+APP_NAME='helloWorld'
 
 PYTHON_VERSION="`${PYTHON_PATH} --version | cut -d' ' -f2`"
 PYTHON_EXEC_VERSION="`echo ${PYTHON_VERSION} | cut -d. -f1-2`"
@@ -49,23 +49,37 @@ ls -lah
 
 # first update brew
 #  * https://blog.fossasia.org/deploying-a-kivy-application-with-pyinstaller-for-mac-osx-to-github/
-brew update
+#brew update
 
 # install os-level depends
-brew install wget python3
-brew reinstall sdl2 sdl2_image sdl2_ttf sdl2_mixer
+#brew install wget python3
+#brew reinstall sdl2 sdl2_image sdl2_ttf sdl2_mixer
+
+brew -v uninstall --ignore-dependencies python
+brew -v reinstall build/deps/python-3.7.8.catalina.bottle.tar.gz
+PYTHON_PATH="`find /usr/local/Cellar/python -type f -wholename *bin/python3* | sort -n | uniq | head -n1`"
+
+brew reinstall build/deps/sdl2-2.0.12_1.catalina.bottle.tar.gz
+brew reinstall build/deps/sdl2_image-2.0.5.catalina.bottle.tar.gz
+brew reinstall build/deps/sdl2_mixer-2.0.4.catalina.bottle.tar.gz
+brew reinstall build/deps/sdl2_ttf-2.0.15.catalina.bottle.tar.gz
+
+# get python essential dependencies
+${PIP_PATH} install --ignore-installed --upgrade --cache-dir build/deps/ --no-index --find-links file://`pwd`/build/deps/ build/deps/pip-20.1.1-py2.py3-none-any.whl
+PIP_PATH="`find /usr/local/Cellar/python -type f -wholename *bin/pip3* | sort -n | uniq | head -n1`"
+
+${PIP_PATH} install --ignore-installed --upgrade --cache-dir build/deps/ --no-index --find-links file://`pwd`/build/deps/ build/deps/setuptools-49.1.0-py3-none-any.whl
+${PIP_PATH} install --ignore-installed --upgrade --cache-dir build/deps/ --no-index --find-links file://`pwd`/build/deps/ build/deps/wheel-0.34.2-py2.py3-none-any.whl
 
 # setup a virtualenv to isolate our app's python depends
-sudo ${PYTHON_PATH} -m ensurepip
-${PIP_PATH} install --upgrade --force-reinstall --user pip setuptools
+#sudo ${PYTHON_PATH} -m ensurepip
+#${PIP_PATH} install --upgrade --force-reinstall --user pip setuptools
 #${PYTHON_PATH} -m pip install --upgrade --user virtualenv
 #${PYTHON_PATH} -m virtualenv /tmp/kivy_venv
 
-# install kivy and all other python dependencies with pip into our virtual env
-#source /tmp/kivy_venv/bin/activate
-${PIP_PATH} install --upgrade --force-reinstall --user Cython==0.29.10 || exit 1
-${PIP_PATH} install --upgrade --force-reinstall --user -r requirements.txt || exit 1
-${PIP_PATH} install --upgrade --force-reinstall --user PyInstaller || exit 1
+# install kivy and all other python dependencies with pip
+${PIP_PATH} install --ignore-installed --upgrade --cache-dir build/deps/ --no-index --find-links file://`pwd`/build/deps/ build/deps/Kivy-1.11.1-cp37-cp37m-macosx_10_6_intel.macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl
+${PIP_PATH} install --ignore-installed --upgrade --cache-dir build/deps/ --no-index --find-links file://`pwd`/build/deps/ build/deps/PyInstaller-3.6.tar.gz
 
 #####################
 # PYINSTALLER BUILD #
