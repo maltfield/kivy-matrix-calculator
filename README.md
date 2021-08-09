@@ -1,6 +1,6 @@
 ![](https://github.com/maltfield/cross-platform-python-gui/workflows/build/badge.svg)
 
-# Cross Platform Python GUI
+# Kivy Matrix Calculator (Cross Platform Python GUI Demo)
 
 This repo a demonstration of a simple matrix calculator app in kivy developed by darpan5552.
 
