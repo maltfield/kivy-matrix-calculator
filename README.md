@@ -2,7 +2,7 @@
 
 # Kivy Matrix Calculator (Cross Platform Python GUI Demo)
 
-This repo a demonstration of a simple matrix calculator app in kivy developed by darpan5552.
+This repo a demonstration of a simple matrix calculator app in kivy [developed by darpan5552](https://github.com/darpan5552/cross-platform-python-gui).
 
 This app is automatically built by GitHub on-push to self-contained executables for Linux (AppImage), Windows (exe), and MacOS (dmg). It uses CI piplines for each platform and GitHub Actions' free shared runners.
 
