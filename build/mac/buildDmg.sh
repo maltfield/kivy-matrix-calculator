@@ -11,8 +11,8 @@ set -x
 #
 # Authors: Michael Altfield <michael@buskill.in>
 # Created: 2020-06-22
-# Updated: 2020-09-17
-# Version: 0.2
+# Updated: 2021-08-09
+# Version: 0.3
 ################################################################################
 
 
@@ -22,7 +22,7 @@ set -x
 
 PYTHON_PATH="`find /usr/local/Cellar/python@3.7 -type f -name python3.7 | head -n1`"
 PIP_PATH="`find /usr/local/Cellar/python@3.7 -type f -name pip3.7 | head -n1`"
-APP_NAME='helloWorld'
+APP_NAME='kivyMatrixCalculator'
 
 PYTHON_VERSION="`${PYTHON_PATH} --version | cut -d' ' -f2`"
 PYTHON_EXEC_VERSION="`echo ${PYTHON_VERSION} | cut -d. -f1-2`"

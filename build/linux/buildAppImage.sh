@@ -11,8 +11,8 @@ set -x
 #
 # Authors: Michael Altfield <michael@buskill.in>
 # Created: 2020-05-30
-# Updated: 2020-05-31
-# Version: 0.2
+# Updated: 2021-08-08-09
+# Version: 0.3
 ################################################################################
 
 ############
@@ -121,7 +121,7 @@ chmod +x /tmp/appimagetool.AppImage
 # create the dist dir for our result to be uploaded as an artifact
 # note tha gitlab will only accept artifacts that are in the build dir (cwd)
 mkdir dist
-/tmp/appimagetool.AppImage /tmp/kivy_appdir dist/helloWorld.AppImage
+/tmp/appimagetool.AppImage /tmp/kivy_appdir dist/kivyMatrixCalculator.AppImage
 
 #######################
 # OUTPUT VERSION INFO #

@@ -11,8 +11,8 @@ Set-PSDebug -Trace 1
 #
 # Authors: Michael Altfield <michael@buskill.in>
 # Created: 2020-05-31
-# Updated: 2020-05-31
-# Version: 0.1
+# Updated: 2021-08-09
+# Version: 0.2
 ################################################################################
 
 ######################################
@@ -106,11 +106,11 @@ exe = EXE(pyz,
           strip=False,
           upx=True,
           console=False)
-" | tee helloWorld.spec
+" | tee kivyMatrixCalculator.spec
 
 # PyInstaller in windows chokes on null bytes added to .spec files; remove them
 # to prevent "ValueError: source code string cannot contain null bytes"
-(Get-Content .\helloWorld.spec) -replace "`0", "" | Set-Content .\helloWorld.spec
+(Get-Content .\kivyMatrixCalculator.spec) -replace "`0", "" | Set-Content .\kivyMatrixCalculator.spec
 
 #############
 # BUILD EXE #
@@ -123,10 +123,10 @@ exe = EXE(pyz,
 $env:KIVY_GL_BACKEND="angle_sdl2"
 
 # build it from the spec file
-C:\tmp\kivy_venv\Scripts\python.exe -m PyInstaller --noconfirm --onefile .\helloWorld.spec | Out-String
+C:\tmp\kivy_venv\Scripts\python.exe -m PyInstaller --noconfirm --onefile .\kivyMatrixCalculator.spec | Out-String
 
 # attempt to execute it?
-#.\dist\helloWorld\helloWorld.exe | Out-String
+#.\dist\kivyMatrixCalculator\kivyMatrixCalculator.exe | Out-String
 
 #####################
 # PREPARE ARTIFACTS #
@@ -136,7 +136,7 @@ C:\tmp\kivy_venv\Scripts\python.exe -m PyInstaller --noconfirm --onefile .\hello
 cd .. | Out-String
 
 New-Item -Path dist -Type Directory | Out-String
-cp -r ".\pyinstaller\dist\*" dist/helloWorld-x86_64 | Out-String
+cp -r ".\pyinstaller\dist\*" dist/kivyMatrixCalculator-x86_64 | Out-String
 
 #######################
 # OUTPUT VERSION INFO #
